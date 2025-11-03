@@ -137,3 +137,55 @@ Các cách tấn công sẽ được  cập nhật liên tục từ các threat 
 **Machine learning**
 
 ![image.png](image%208.png)
+
+## zKeybox
+
+### Mục đích chính của sản phẩm
+
+- Thực hiện các thao tác mật mã (encryption, signing,…) trong 1 môi trường an toàn
+- Ngăn kẻ tấn công **trích xuất khóa bí mật** từ ứng dụng, dù thiết bị bị root/jailbreak hay bị debug.
+- Dựa trên nguyên lý **white-box cryptography** → mọi dữ liệu, biến, và thao tác bên trong đều ở trạng thái mã hóa (không bao giờ xuất hiện dạng plaintext).
+
+### Cách sử dụng zKeyBox Constructor
+
+Đầu tiên là phải tạo 1 cái lược đồ mật mã riêng cho app của mk sau đó sẽ tạo ra zKeyBox library được thiết kế riêng
+
+Tạo lược đồ bằng phần mềm tên là zKeyBox Constructor
+Lược đồ này là **một đồ thị (graph)** mô tả **các thao tác mật mã sẽ được thực thi, thứ tự thực hiện, và loại khóa được sử dụng** trong từng bước.
+
+Sau đó sẽ có 2 loại bản dùng thử và trả phí của zKeybox
+
+### zKeybox sẽ cung cấp khá nhiều loại cơ chế và áp dụng được trên nhiều platform
+
+### Các chức năng chính
+
+- **Diversification**: Mỗi thư viện zKeybox thì được tạo nên từ 1 seed ngẫu nhiên dẫn đến việc zKeybox ở mỗi lần tạo sẽ khác nhau
+- **zShield protection**: cơ bản thì khi request cái gói zKeybox thì sẽ có được chọn option là “tamper-resistant edition” sẽ được bảo vệ bằng zShield
+- **Key Exporting and Importing**
+
+![image.png](image%209.png)
+
+Mỗi khi export hoặc import thì sẽ cần 1 cái key riêng để wrap lại cái key của người dùng. 
+
+Export và import key này sẽ được gen trên cái Export Import Key Tool qua 1 dòng lệnh, mỗi 1 dynamic key thì có thể có nhiều key mỗi loại nma luôn phải có ít nhất 1 trong 2
+
+- Device ID cái này ta có thể cho thêm vào lúc export và import để tăng tính xác thực
+- 3 yếu tố cần để import thành công
+    - khóa nhập phải giống khóa xuất
+    - 2 khóa này cần được tạo ra từ Export Import Key Tool từ cùng 1 gói zKeybox
+    - Nếu có device ID thì phải giống
+- **Key Serialization**
+
+Đây như kiểu 1 tính năng đơn giản hóa của export và import nhưng có các sự khác biệt sau
+
+- Dành riêng cho zKeybox chứ không đi theo các phiên bản app/ thiết bị được
+- không cần export và import key
+- **Internal Random Number Generator**
+
+Với việc sinh số ngẫu nhiên thì thg này có riêng 1 cái gọi là internal Deterministic Random Bit Generator (DRBG) nhưng mà có thể dùng các cái entropy khác được 
+
+- **Externalization of Platform Dependencies**
+
+Khi zKeybox sử dụng có thể sử dụng 1 số hàm ăn theo hệ điều hành, việc này dẫn tới 1 số tuân thủ có thể ko đạt
+
+Chức năng này cho phép chúng ta cầm cái hàm mà zKeybox dùng về, sửa đổi và nhét lại vào app để tuân thủ
