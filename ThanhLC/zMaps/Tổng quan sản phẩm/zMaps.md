@@ -130,7 +130,11 @@ Và nó bảo vệ bằng cách:
 
 Cơ bản thì thằng zDefend hay nói rộng là zimperium sẽ bảo vệ app qua cơ chế là nhìn từ ngoài vào, sẽ là kiểu giám sát app của mình hoạt động ra sao chứ không như cách truyền thống sẽ đi từ trong ra là khi app nổ, app chết thì đi tìm các cách giải quyết dựa vào signature 
 
-cái qtrong nhất là thg zim này không bắt người dùng phải cập nhật lại app khi có tấn công, áp dụng cả ml vào trong này để học hành vi tìm ra được các threat mà chưa có trong signature, 
+cái qtrong nhất là thg zim này không bắt người dùng phải cập nhật lại app khi có tấn công:
+
+Với các giải pháp thông thường khi app bị tấn công ta sẽ cần phải tạo bản vá và public lại mới có thể sửa được lỗi đó. Nhưng khi đã bọc sản phẩm bằng zim thì không cần tạo lại bản vá nữa
+
+Zim áp dụng cả ml vào trong này để học hành vi tìm ra được các threat mà chưa có trong signature, 
 
 Các cách tấn công sẽ được  cập nhật liên tục từ các threat mới
 
